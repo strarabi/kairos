@@ -2,7 +2,10 @@ import { FormEvent, useEffect, useState } from 'react'
 import { useMutation, useQuery } from '../convex/_generated/react'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
-import Button from 'react-bootstrap/Form';
+import { GenericId } from 'convex/values';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+import PopupEditComponent from './popupEditComponent';
 
 export default function App() {
   const assignments = useQuery('listAssignments') || []
@@ -13,6 +16,7 @@ export default function App() {
   const [newSourceUrlText, setNewSourceUrlText] = useState('')
 
   const addAssignment = useMutation('addAssignment')
+  const deleteAssignment = useMutation('deleteAssignment')
 
   async function handleAddAssignment(event: FormEvent) {
     event.preventDefault()
@@ -23,6 +27,11 @@ export default function App() {
     setNewDueDate(new Date())
     setNewSourceUrlText('')
   }
+
+  async function handleDeleteAssignment(id: GenericId<"assignment">) {
+    await deleteAssignment(id)
+  }
+
   return (
     <main>
       <h1>Assignment List</h1>
@@ -44,9 +53,8 @@ export default function App() {
             <td><a href={assignment.source_url} target="_blank">{assignment.source_url}</a></td>
             <td>{new Date(assignment._creationTime).toLocaleDateString()}</td>
             <td className="last-col">
-              <button onClick={alert("test")}> ✏️️ </button>
-              <button> ❌ </button>
-            {/* <Button variant="primary">Primary</Button> */}
+              <PopupEditComponent assignment_id={assignment._id} currentClassName={assignment.class_name} currentAssignmentName={assignment.assignment_name} currentDueDate={assignment.due_date} currentSourceURL={assignment.source_url}/>
+              <button onClick={() => handleDeleteAssignment(assignment._id)}> ❌ </button>
               </td>
             </tr>
         ))}
@@ -91,7 +99,7 @@ export default function App() {
         />
         </div>
         <input type="submit" value="Send" disabled={!newAssignmentNameText || !newDueDate} />
-        
+
       </form>
     </main>
   )
