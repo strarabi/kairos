@@ -1,14 +1,58 @@
+body {
+  width: 490px;
+  margin: 0 auto;
+}
+/* Set background color and font family for the entire page */
+body {
+  background-color: #f9f9f9;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Style the header with a gradient background and centered logo */
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, #0f4c75, #3282b8);
+  height: 100px;
+}
+
+/* Add some animation to the logo when hovered over */
+.kairos-logo {
+  width: 80px;
+  height: 80px;
+  transition: all 0.2s ease-in-out;
+}
+
+.kairos-logo:hover {
+  transform: rotate(360deg);
+}
+
+/* Style the title with a bold font and a drop shadow effect */
+.title {
+  text-align: center;
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #3282b8;
+  text-shadow: 2px 2px 5px #222;
+}
+
 .button-container {
-  flex-direction: column;
+  display: flex;
+  justify-content: center;
   align-items: center;
   width: 490px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
+
+/* Add a box shadow effect to the button and make it expand on hover */
 .button {
-  padding: 0.6em 2em;
+  padding: 0.7em 2em;
   border: none;
   outline: none;
-  color: rgb(255, 255, 255);
-  background: #111;
+  color: #f9f9f9;
+  background-color: #0f4c75;
   cursor: pointer;
   position: relative;
   z-index: 0;
@@ -16,22 +60,13 @@
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  box-shadow: 0 0 10px #222;
+  transition: all 0.2s ease-in-out;
 }
 
 .button:before {
   content: "";
-  background: linear-gradient(
-    45deg,
-    #ff0000,
-    #ff7300,
-    #fffb00,
-    #48ff00,
-    #00ffd5,
-    #002bff,
-    #7a00ff,
-    #ff00c8,
-    #ff0000
-  );
+  background: linear-gradient(45deg, #0f4c75, #3282b8);
   position: absolute;
   top: -2px;
   left: -2px;
@@ -46,52 +81,45 @@
   border-radius: 10px;
 }
 
-@keyframes glowing-button {
-  0% {
-    background-position: 0 0;
-  }
-  50% {
-    background-position: 400% 0;
-  }
-  100% {
-    background-position: 0 0;
-  }
+.button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #222;
 }
 
-.button:after {
-  z-index: -1;
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #222;
-  left: 0;
-  top: 0;
+/* Style the link to the web app with an underline effect */
+.web-app-link {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  color: #0f4c75;
+  font-weight: bold;
+  border-bottom: 3px solid #3282b8;
+  padding-bottom: 5px;
+  transition: all 0.2s ease-in-out;
+}
+
+.web-app-link:hover {
+  border-bottom: 3px solid #0f4c75;
+  color: #3282b8;
+}
+
+/* Add a drop shadow effect to the content container */
+.content-container {
+  margin: 20px auto;
+  width: 80%;
+  max-width: 700px;
+  background-color: #f9f9f9;
   border-radius: 10px;
+  box-shadow: 5px 5px 10px #222;
+  padding: 20px;
 }
 
-.title {
-  width: 490px;
-	text-align: center;
+/* Style the form elements */
+form {
+  display: flex;
+  flex-direction: column;
 }
 
-.img-container {
-    height: 60px;
-    background-color: #535151;
-    width: 490px;
-    -webkit-border-top-left-radius: 5px;
-    -webkit-border-top-right-radius: 5px;
-    -moz-border-radius-topleft: 5px;
-    -moz-border-radius-topright: 5px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-}
-
-.kairos-logo{
-  width: 60px;
-  height: 60px;
-}
-
-.title-container {
-  width: 490px;
+label {
+  margin-top: 10
 }
