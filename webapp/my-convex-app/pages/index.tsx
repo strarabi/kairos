@@ -1,74 +1,97 @@
 import { FormEvent, useEffect, useState } from 'react'
 import { useMutation, useQuery } from '../convex/_generated/react'
-
-
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css";
+import Button from 'react-bootstrap/Form';
 
 export default function App() {
   const assignments = useQuery('listAssignments') || []
 
   const [newClassNameText, setNewClassNameText] = useState('')
   const [newAssignmentNameText, setNewAssignmentNameText] = useState('')
-  // const [newDueDateText, setNewDueDateText] = useState(0)
-  const newDueDateInt = 1708282715; // random 2024 date
+  const [newDueDate, setNewDueDate] = useState<Date | null>(new Date());
   const [newSourceUrlText, setNewSourceUrlText] = useState('')
 
   const addAssignment = useMutation('addAssignment')
 
-  const [name, setName] = useState('user')
-
-  useEffect(() => {
-    setName('User ' + Math.floor(Math.random() * 10000))
-  }, [])
-
   async function handleAddAssignment(event: FormEvent) {
     event.preventDefault()
+    if (!newDueDate) return
+    await addAssignment(newClassNameText, newAssignmentNameText, BigInt(newDueDate?.getTime()), newSourceUrlText)
     setNewAssignmentNameText('')
     setNewClassNameText('')
-    // setNewDueDateText(0)
+    setNewDueDate(new Date())
     setNewSourceUrlText('')
-    await addAssignment(newClassNameText, newAssignmentNameText, BigInt(newDueDateInt), newSourceUrlText)
   }
   return (
     <main>
       <h1>Assignment List</h1>
-      <p className="badge">
-        <span>{name}</span>
-      </p>
-      <ul>
+
+      <table id="assignment-list">
+        <tr>
+          <td>Class Name</td>
+          <td>Assignment Name</td>
+          <td>Due Date</td>
+          <td>Source URL</td>
+          <td>Date Added</td>
+          <td> </td>
+        </tr>
         {assignments.map((assignment) => (
-          <li key={assignment._id.toString()}>
-            <span>{assignment.class_name}:</span>
-            <span>{assignment.assignment_name}</span>
-            <span>{new Date(Number(assignment.due_date)).toLocaleDateString()}</span>
-            <span>{assignment.source_url}</span>
-            <span>{new Date(assignment._creationTime).toLocaleTimeString()}</span>
-          </li>
+          <tr key={assignment._id.toString()}>
+            <td>{assignment.class_name}</td>
+            <td>{assignment.assignment_name}</td>
+            <td>{new Date(Number(assignment.due_date)).toLocaleDateString()}</td>
+            <td><a href={assignment.source_url} target="_blank">{assignment.source_url}</a></td>
+            <td>{new Date(assignment._creationTime).toLocaleDateString()}</td>
+            <td className="last-col">
+              <button onClick={alert("test")}> ✏️️ </button>
+              <button> ❌ </button>
+            {/* <Button variant="primary">Primary</Button> */}
+              </td>
+            </tr>
         ))}
-      </ul>
+      </table>
+      <br/>
       <form onSubmit={handleAddAssignment}>
+        <div className="input-section">
+        <label htmlFor="class-name-input">Class Name</label>
         <input
+          id = "class-name-input"
           value={newClassNameText}
           onChange={(event) => setNewClassNameText(event.target.value)}
           placeholder="Enter the class name"
         />
+        </div>
+        <div className="input-section">
+        <label htmlFor="assignment-name-input" className = "required">Assignment Name</label>
         <input
+          id="assignment-name-input"
           value={newAssignmentNameText}
           onChange={(event) => setNewAssignmentNameText(event.target.value)}
           placeholder="Enter the assignment name"
+          required
         />
-        {/* Todo insert some calendar component */}
-        {/* <input
-          value={newDueDateText}
-          onChange={(event) => setNewDueDateText(event.target.value)}
-          placeholder="Enter the due date"
-        /> */}
+        </div>
+        <div className="input-section">
+        <label htmlFor="due-date-input" className = "required">Due Date</label>
+        <DatePicker
+          id = "due-date-input"
+          selected={newDueDate}
+          onChange={(d) => setNewDueDate(d)}
+          required
+        />
+        </div>
+        <div className="input-section">
+        <label htmlFor="source-url-input">Source URL</label>
         <input
+          id = "source-url-input"
           value={newSourceUrlText}
           onChange={(event) => setNewSourceUrlText(event.target.value)}
           placeholder="Enter the source url"
         />
-        {/* || !newDueDateText */}
-        <input type="submit" value="Send" disabled={!newAssignmentNameText || !newClassNameText  || !newSourceUrlText} />
+        </div>
+        <input type="submit" value="Send" disabled={!newAssignmentNameText || !newDueDate} />
+        
       </form>
     </main>
   )

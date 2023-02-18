@@ -10,6 +10,6 @@ export default defineSchema({
     assignment_name: s.string(),
     due_date: s.bigint(),
     source_url: s.string(),
-  }),
+  }).index("by_due_date", ["due_date"]),
 })
 

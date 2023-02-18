@@ -1,6 +1,7 @@
 .button-container {
   flex-direction: column;
   align-items: center;
+  width: 490px;
 }
 .button {
   padding: 0.6em 2em;
@@ -70,5 +71,27 @@
 }
 
 .title {
+  width: 490px;
 	text-align: center;
+}
+
+.img-container {
+    height: 60px;
+    background-color: #535151;
+    width: 490px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.kairos-logo{
+  width: 60px;
+  height: 60px;
+}
+
+.title-container {
+  width: 490px;
 }

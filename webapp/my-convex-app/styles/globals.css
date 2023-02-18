@@ -25,6 +25,43 @@ h1 {
   font-weight: 500;
 }
 
+#assignment-list {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#assignment-list td, #assignment-list th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#assignment-list tr:nth-child(even){
+  background-color: #f2f2f2;
+}
+
+.last-col {
+  background-color: none;   
+  color: black;
+}
+
+#assignment-list:nth-last-child(1) {
+  background-color: #29465B;   
+  color: white;
+}
+
+#assignment-list tr:hover {background-color: #ddd;}
+
+#assignment-list tr:nth-child(1):hover {background-color: #29465B;}
+
+#assignment-list th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+
 .badge {
   text-align: center;
   margin-bottom: 16px;
@@ -72,8 +109,8 @@ li span:nth-child(2) {
 }
 li span:nth-child(3) {
   color: #6c757d;
-  margin-left: auto;
-  white-space: nowrap;
+  /* margin-left: auto;
+  white-space: nowrap; */
 }
 
 form {
@@ -81,12 +118,17 @@ form {
   justify-content: center;
 }
 
-input:not([type]) {
+input:not([type]), #due-date-input {
   padding: 6px 12px 6px 12px;
   color: rgb(33, 37, 41);
   border: solid 1px rgb(206, 212, 218);
   border-radius: 8px;
   font-size: 16px;
+}
+
+.required:after {
+  content:" *";
+  color: red;
 }
 
 input[type='submit'],
@@ -98,6 +140,7 @@ button {
   border-radius: 8px;
   font-size: 16px;
   background-color: rgb(49, 108, 244);
+  height: 80%
 }
 
 input[type='submit']:hover,
