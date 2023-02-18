@@ -1,0 +1,22 @@
+{
+	"name": "kairos",
+	"version": "1.0",
+	"description": "this is a description of our chrome extension",
+	"short_name": "kai",
+	"manifest_version": 2,
+
+	"browser_action": {
+		"default_popup": "./public/index.html"
+	},
+
+	"permissions": [
+		"tabs"
+	],
+
+	"content_scripts": [
+		{
+			"js": ["./public/content_script.js"]
+		}
+	]
+
+}
