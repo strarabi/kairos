@@ -32,21 +32,25 @@ export default function App() {
     await deleteAssignment(id)
   }
 
+  async function exportCalendar() {
+    // await deleteAssignment(id)
+  }
+
   return (
     <main>
       <h1>Assignment List</h1>
 
       <table id="assignment-list">
         <tr>
-          <td>Class Name</td>
-          <td>Assignment Name</td>
-          <td>Due Date</td>
-          <td>Source URL</td>
-          <td>Date Added</td>
-          <td> </td>
+          <th>Class Name</th>
+          <th>Assignment Name</th>
+          <th>Due Date</th>
+          <th>Source URL</th>
+          <th>Date Added</th>
+          <th className="last-col"><button className = "export-button" onClick={() => exportCalendar()}> Export as Calendar </button> </th>
         </tr>
         {assignments.map((assignment) => (
-          <tr key={assignment._id.toString()}>
+          <tr key={assignment._id.toString()} className="assignment-tr">
             <td>{assignment.class_name}</td>
             <td>{assignment.assignment_name}</td>
             <td>{new Date(Number(assignment.due_date)).toLocaleDateString()}</td>
@@ -54,7 +58,7 @@ export default function App() {
             <td>{new Date(assignment._creationTime).toLocaleDateString()}</td>
             <td className="last-col">
               <PopupEditComponent assignment_id={assignment._id} currentClassName={assignment.class_name} currentAssignmentName={assignment.assignment_name} currentDueDate={assignment.due_date} currentSourceURL={assignment.source_url}/>
-              <button onClick={() => handleDeleteAssignment(assignment._id)}> ❌ </button>
+              <button className = "edit-delete-button" onClick={() => handleDeleteAssignment(assignment._id)}> ❌ </button>
               </td>
             </tr>
         ))}
@@ -98,7 +102,7 @@ export default function App() {
           placeholder="Enter the source url"
         />
         </div>
-        <input type="submit" value="Send" disabled={!newAssignmentNameText || !newDueDate} />
+        <input type="submit" value="Add" disabled={!newAssignmentNameText || !newDueDate} />
 
       </form>
     </main>

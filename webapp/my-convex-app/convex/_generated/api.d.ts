@@ -12,7 +12,6 @@
 import type { ApiFromModules } from "convex/api";
 import type * as addAssignment from "../addAssignment";
 import type * as deleteAssignment from "../deleteAssignment";
-import type * as http from "../http";
 import type * as listAssignments from "../listAssignments";
 import type * as replaceAssignment from "../replaceAssignment";
 
@@ -28,7 +27,6 @@ import type * as replaceAssignment from "../replaceAssignment";
 export type API = ApiFromModules<{
   addAssignment: typeof addAssignment;
   deleteAssignment: typeof deleteAssignment;
-  http: typeof http;
   listAssignments: typeof listAssignments;
   replaceAssignment: typeof replaceAssignment;
 }>;

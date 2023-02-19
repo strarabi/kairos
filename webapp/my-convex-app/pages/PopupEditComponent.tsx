@@ -17,8 +17,12 @@ export default function PopupEditComponent(props: {assignment_id: GenericId<"ass
   const replaceAssignment = useMutation('replaceAssignment')
   // 80% of screen width and height
 
-  // // const contentStyle = { background: '#000',   // const overlayStyle = { background: 'rgba(0,0,0,0.5)' };
-  // // const arrowStyle = { color: '#000' }; // style for an svg element
+  // contentStyle = { background: 'rgba(0,255,1,0.5)' };
+  // overlayStyle = { background: 'rgba(0,0,0,0.5)' };
+
+  const contentStyle = { background: 'rgba(240,240,240,1)'};
+  const overlayStyle = { background: 'rgba(0,0, 0, 0.5)'};
+  const arrowStyle = { color: '#000' }; // style for an svg element  const arrowStyle = { color: '#000' }; // style for an svg element
 
   async function handleEditAssignment(event: FormEvent) {
     event.preventDefault()
@@ -27,12 +31,18 @@ export default function PopupEditComponent(props: {assignment_id: GenericId<"ass
   }
 
   return (
-  <Popup trigger={<button> ✏️</button>}
-  // // {...{ modal, closeOnDocumentClick, contentStyle, overlayStyle, arrowStyle }}
-  >
-    <div className="popup-content"><form onSubmit={handleEditAssignment}>
+    <Popup trigger={<button className="edit-delete-button"> ✏️</button>}
+    modal
+    nested
+  {...{contentStyle, overlayStyle, arrowStyle }}  {...{ contentStyle, overlayStyle, arrowStyle }}
+>
+    {(close: () => void)=> (
+    <div className="modal">
+        <div className="modal-header">Edit assignment</div>
+        <div className="content">
+        <form onSubmit={handleEditAssignment} className="popup-content">
         <div className="input-section">
-        <label htmlFor="class-name-input">Class Name</label>
+        <label htmlFor="class-name-input">Class Name</label><br/>
         <input
           id = "class-name-input"
           value={newClassNameText}
@@ -41,7 +51,7 @@ export default function PopupEditComponent(props: {assignment_id: GenericId<"ass
         />
         </div>
         <div className="input-section">
-        <label htmlFor="assignment-name-input" className = "required">Assignment Name</label>
+        <label htmlFor="assignment-name-input" className = "required">Assignment Name</label><br/>
         <input
           id="assignment-name-input"
           value={newAssignmentNameText}
@@ -51,7 +61,7 @@ export default function PopupEditComponent(props: {assignment_id: GenericId<"ass
         />
         </div>
         <div className="input-section">
-        <label htmlFor="due-date-input" className = "required">Due Date</label>
+        <label htmlFor="due-date-input" className = "required">Due Date</label><br/>
         <DatePicker
           id = "due-date-input"
           selected={newDueDate}
@@ -60,7 +70,7 @@ export default function PopupEditComponent(props: {assignment_id: GenericId<"ass
         />
         </div>
         <div className="input-section">
-        <label htmlFor="source-url-input">Source URL</label>
+        <label htmlFor="source-url-input">Source URL</label><br/>
         <input
           id = "source-url-input"
           value={newSourceUrlText}
@@ -68,8 +78,8 @@ export default function PopupEditComponent(props: {assignment_id: GenericId<"ass
           placeholder="Enter the source url"
         />
         </div>
-        <input type="submit" value="Send" disabled={!newAssignmentNameText || !newDueDate} />
-
+        <button value="Update" disabled={!newAssignmentNameText || !newDueDate} onClick={(event) => {handleEditAssignment(event); console.log("modal closed"); close();}}>Update</button>
       </form></div>
+      </div>)}
   </Popup>)
 }
