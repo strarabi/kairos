@@ -1,7 +1,7 @@
 import {useHighlightedText, usePageText} from "./content-script.js"
-import makeApiCallTitle from "./title-script.js"
+import getQuote from "./title-script.js"
 
-makeApiCallTitle()
+getQuote()
 
 window.onload = function() {	
 	let scrape_button = document.getElementById("scrape-button")

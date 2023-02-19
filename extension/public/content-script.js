@@ -25,13 +25,12 @@ function usePageText() {
 function processText(page_text) {
   chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
     let page_link = tabs[0].url;
-    // use `url` here inside the callback because it's asynchronous!
-    doOtherThings(page_link, page_text)
+    makeRequests(page_link, page_text)
   });
 }
 
 
-function doOtherThings(page_link, page_text) {
+function makeRequests(page_link, page_text) {
 	var openAI_request = new XMLHttpRequest();
 	openAI_request.open("POST", "https://api.openai.com/v1/completions", true);
 	openAI_request.setRequestHeader("Content-Type", "application/json");
@@ -44,10 +43,7 @@ function doOtherThings(page_link, page_text) {
 			let responseText = JSON.parse(openAI_request.response).choices[0].text;
 			const convexClient = new convex.ConvexHttpClient("https://steady-tarsier-514.convex.cloud");
 			const mutation = convexClient.mutation("addAssignment");
-			console.log(responseText);
-      alert(responseText);
 			var objs = responseText.split("\n");
-			console.log(objs);
 			var started_parsing = false;
 			for (var i = 0; i < objs.length; i++) {
 				if (objs[i].includes("Course")) {
@@ -59,17 +55,14 @@ function doOtherThings(page_link, page_text) {
 				}
 				var split_objs = objs[i].split(",");
 				if (split_objs) {
-          let date = 0
-          if (split_objs[2]) {
-            var parts = split_objs[2].split("/");
-            var dateObject = new Date(parts[2], parts[0] - 1, parts[1]);
-            date = dateObject.getTime()
+					let date = 0
+					if (split_objs[2]) {
+						var parts = split_objs[2].split("/");
+						var dateObject = new Date(parts[2], parts[0] - 1, parts[1]);
+						date = dateObject.getTime()
           }
-
-          // MM/DD/YYYY if split_objs[2]
-
-					mutation(split_objs[0], split_objs[1], date, page_link)
-          reqs++
+		mutation(split_objs[0], split_objs[1], date, page_link)
+		reqs++
 				}
 			}
       alert(`Successfully parsed data for ${reqs} assignments.`)
