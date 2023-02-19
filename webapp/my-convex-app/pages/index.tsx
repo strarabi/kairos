@@ -96,9 +96,9 @@ function getEvent(assignment: {
         <tr>
           <th>Class</th>
           <th>Assignment</th>
-          <th>Due</th>
+          <th>Due Date</th>
           <th>Source</th>
-          <th>Created</th>
+          <th>Date Created</th>
           <th className="last-col"><button className = "export-button" onClick={() => exportAllCalendar()}> Export all 🗓️ </button> </th>
         </tr>
         {assignments.map((assignment) => (
@@ -118,7 +118,7 @@ function getEvent(assignment: {
         </tbody>
       </table>
       </div>
-      <button className="export-button add-new-item"> Add Item </button>
+      <PopupEditComponent />
       {/* <br/> */}
 
       {/* <form onSubmit={handleAddAssignment} id="outer-form">

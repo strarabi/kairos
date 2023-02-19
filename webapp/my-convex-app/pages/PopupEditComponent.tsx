@@ -8,13 +8,27 @@ import { GenericId } from 'convex/values';
 import { FormEvent } from 'react';
 
 
-export default function PopupEditComponent(props: {assignment_id: GenericId<"assignment">, currentClassName: string, currentAssignmentName: string, currentDueDate: bigint, currentSourceURL:string}) {
-  const [newClassNameText, setNewClassNameText] = useState(props.currentClassName)
-  const [newAssignmentNameText, setNewAssignmentNameText] = useState(props.currentAssignmentName)
-  const [newDueDate, setNewDueDate] = useState<Date | null>(new Date(Number(props.currentDueDate)));
-  const [newSourceUrlText, setNewSourceUrlText] = useState(props.currentSourceURL)
+export default function PopupEditComponent(props: {assignment_id?: GenericId<"assignment">, currentClassName?: string, currentAssignmentName?: string, currentDueDate?: bigint, currentSourceURL?:string}) {
+  // console.log("here")
+  // console.log(props.assignment_id)
+  const [newClassNameText, setNewClassNameText] = useState('hi') //useState(props.currentClassName ?? '')
+  const [newAssignmentNameText, setNewAssignmentNameText] = useState('hi') // useState(props.currentAssignmentName ?? '')
+  let initialDate;
+  if (!props.currentDueDate || props.currentDueDate === undefined) {
+    initialDate = new Date()
+  } else {
+    initialDate = new Date(Number(props.currentDueDate))
+  }
+  const [newDueDate, setNewDueDate] = useState(new Date())// useState<Date | null>(new Date());
+  const [newSourceUrlText, setNewSourceUrlText] = useState("hi") //useState(props.currentSourceURL ?? '')
+
+  let isEdit = true
+  if (!props.assignment_id || props.assignment_id === undefined) {
+    isEdit = false
+  } 
 
   const replaceAssignment = useMutation('replaceAssignment')
+  const addAssignment = useMutation('addAssignment')
   // 80% of screen width and height
 
   // contentStyle = { background: 'rgba(0,255,1,0.5)' };
@@ -26,19 +40,29 @@ export default function PopupEditComponent(props: {assignment_id: GenericId<"ass
 
   async function handleEditAssignment(event: FormEvent) {
     event.preventDefault()
-    if (!newDueDate) return
+    if (!newDueDate || !props.assignment_id) return
     await replaceAssignment(props.assignment_id, newClassNameText, newAssignmentNameText, BigInt(newDueDate?.getTime()), newSourceUrlText)
   }
 
+  async function handleAddAssignment(event: FormEvent) {
+    event.preventDefault()
+    if (!newDueDate) return
+    await addAssignment(newClassNameText, newAssignmentNameText, BigInt(newDueDate?.getTime()), newSourceUrlText)
+    setNewAssignmentNameText('')
+    setNewClassNameText('')
+    setNewDueDate(new Date())
+    setNewSourceUrlText('')
+  }
+
   return (
-    <Popup trigger={<button className="edit-delete-button"> ✏️</button>}
+    <Popup trigger={<button className={isEdit?"edit-delete-button":"add-new-item"}> {isEdit?"✏️":"Add New"}</button>}
     modal
     nested
   {...{contentStyle, overlayStyle, arrowStyle }}  {...{ contentStyle, overlayStyle, arrowStyle }}
 >
     {(close: () => void)=> (
     <div className="modal">
-        <div className="modal-header">Edit assignment</div>
+        <div className="modal-header">{isEdit? "Edit":"Add"} assignment</div>
         <div className="content">
         <form onSubmit={handleEditAssignment} className="popup-content">
         <div className="input-section">
@@ -78,7 +102,15 @@ export default function PopupEditComponent(props: {assignment_id: GenericId<"ass
           placeholder="Enter the source url"
         />
         </div>
-        <button value="Update" disabled={!newAssignmentNameText || !newDueDate} onClick={(event) => {handleEditAssignment(event); console.log("modal closed"); close();}}>Update</button>
+        <button value={isEdit?"Update":"Add"} disabled={!newAssignmentNameText || !newDueDate} onClick={(event) => {
+          if (isEdit) {
+            handleEditAssignment(event); 
+          } else {
+            handleAddAssignment(event); 
+          }
+          console.log("modal closed"); 
+          close();
+          }}>{isEdit?"Update":"addAssignment"}</button>
       </form></div>
       </div>)}
   </Popup>)

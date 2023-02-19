@@ -1,163 +1,158 @@
 body {
-  width: 490px;
-  margin: 0 auto;
+	width: 490px;
+	margin: 0 auto;
 }
-/* Set background color and font family for the entire page */
 body {
-  background-color: #f9f9f9;
-  font-family: 'Segoe UI', sans-serif;
+	font-family: "Segoe UI", sans-serif;
 }
 
 /* Style the header with a gradient background and centered logo */
 header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(to right, #0f4c75, #3282b8);
-  height: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: linear-gradient(to right, #0f4c75, #3282b8);
+	height: 100px;
 }
 
 /* Add some animation to the logo when hovered over */
 .kairos-logo {
-  width: 80px;
-  height: 80px;
-  transition: all 0.2s ease-in-out;
+	width: 80px;
+	height: 80px;
+	transition: all 0.2s ease-in-out;
 }
 
 .kairos-logo:hover {
-  transform: rotate(360deg);
+	transform: rotate(360deg);
 }
 
 /* Style the title with a bold font and a drop shadow effect */
 .title {
-  text-align: center;
-  font-size: 2.5em;
-  font-weight: bold;
-  color: #3282b8;
-  text-shadow: 2px 2px 5px #222;
+	text-align: center;
+	font-size: 2.5em;
+	font-weight: bold;
+	color: #3282b8;
+	text-shadow: 2px 2px 5px #222;
 }
 
 .button-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 490px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 490px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
-/* Add a box shadow effect to the button and make it expand on hover */
 .button {
-  padding: 0.7em 2em;
-  border: none;
-  outline: none;
-  color: #f9f9f9;
-  background-color: #0f4c75;
-  cursor: pointer;
-  position: relative;
-  z-index: 0;
-  border-radius: 10px;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  box-shadow: 0 0 10px #222;
-  transition: all 0.2s ease-in-out;
+	padding: 0.7em 2em;
+	border: none;
+	outline: none;
+	background-color: #0f4c75;
+	cursor: pointer;
+	position: relative;
+	z-index: 0;
+	border-radius: 10px;
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
+	box-shadow: 0 0 10px #222;
+	transition: all 0.2s ease-in-out;
 }
 
 .button:before {
-  content: "";
-  background: linear-gradient(45deg, #0f4c75, #3282b8);
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  background-size: 400%;
-  z-index: -1;
-  filter: blur(5px);
-  -webkit-filter: blur(5px);
-  width: calc(100% + 4px);
-  height: calc(100% + 4px);
-  animation: glowing-button-85 20s linear infinite;
-  transition: opacity 0.3s ease-in-out;
-  border-radius: 10px;
+	content: "";
+	background: linear-gradient(45deg, #0f4c75, #3282b8);
+	position: absolute;
+	top: -2px;
+	left: -2px;
+	background-size: 400%;
+	z-index: -1;
+	filter: blur(5px);
+	-webkit-filter: blur(5px);
+	width: calc(100% + 4px);
+	height: calc(100% + 4px);
+	animation: glowing-button-85 20s linear infinite;
+	transition: opacity 0.3s ease-in-out;
+	border-radius: 10px;
 }
 
 .button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px #222;
+	transform: scale(1.05);
+	box-shadow: 0 0 15px #222;
 }
 
 /* Style the link to the web app with an underline effect */
 .web-app-link {
-  display: block;
-  text-align: center;
-  text-decoration: none;
-  color: #0f4c75;
-  font-weight: bold;
-  border-bottom: 3px solid #3282b8;
-  padding-bottom: 5px;
-  transition: all 0.2s ease-in-out;
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	color: #0f4c75;
+	font-weight: bold;
+	border-bottom: 3px solid #3282b8;
+	padding-bottom: 5px;
+	transition: all 0.2s ease-in-out;
 }
 
 .web-app-link:hover {
-  border-bottom: 3px solid #0f4c75;
-  color: #3282b8;
+	border-bottom: 3px solid #0f4c75;
+	color: #3282b8;
 }
 
-/* Add a drop shadow effect to the content container */
 .content-container {
-  margin: 20px auto;
-  width: 80%;
-  max-width: 700px;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 5px 5px 10px #222;
-  padding: 20px;
+	margin: 20px auto;
+	width: 80%;
+	max-width: 700px;
+	background-color: black;
+	border-radius: 10px;
+	box-shadow: 5px 5px 10px #222;
+	padding: 20px;
 }
 
 /* Style the form elements */
 form {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 label {
-  margin-top: 10
+	margin-top: 10;
 }
 .popup-content {
-  background-color: purple;
-  width: 1000px;
-  height: 1000px;
+	background-color: purple;
+	width: 1000px;
+	height: 1000px;
 }
 .modal {
-  font-size: 12px;
+	font-size: 12px;
 }
 .modal > .header {
-  width: 100%;
-  border-bottom: 1px solid gray;
-  font-size: 18px;
-  text-align: center;
-  padding: 5px;
+	width: 100%;
+	border-bottom: 1px solid gray;
+	font-size: 18px;
+	text-align: center;
+	padding: 5px;
 }
 .modal > .content {
-  width: 100%;
-  padding: 10px 5px;
+	width: 100%;
+	padding: 10px 5px;
 }
 .modal > .actions {
-  width: 100%;
-  padding: 10px 5px;
-  margin: auto;
-  text-align: center;
+	width: 100%;
+	padding: 10px 5px;
+	margin: auto;
+	text-align: center;
 }
 .modal > .close {
-  cursor: pointer;
-  position: absolute;
-  display: block;
-  padding: 2px 5px;
-  line-height: 20px;
-  right: -10px;
-  top: -10px;
-  font-size: 24px;
-  background: #ffffff;
-  border-radius: 18px;
-  border: 1px solid #cfcece;
+	cursor: pointer;
+	position: absolute;
+	display: block;
+	padding: 2px 5px;
+	line-height: 20px;
+	right: -10px;
+	top: -10px;
+	font-size: 24px;
+	background: #ffffff;
+	border-radius: 18px;
+	border: 1px solid #cfcece;
 }

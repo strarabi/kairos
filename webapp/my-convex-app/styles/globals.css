@@ -31,7 +31,8 @@ h1 {
   width: 100%;
 }
 
-#assignment-list td, #assignment-list th {
+#assignment-list td,
+#assignment-list th {
   border: 1px solid #ddd;
   padding: 8px;
 }
@@ -44,7 +45,7 @@ h1 {
   /* color: white; */
 }
 
-#assignment-list td{
+#assignment-list td {
   /* border: 1px solid #ddd; */
   padding: 8px;
 }
@@ -61,22 +62,26 @@ h1 {
   color: white;
 } */
 
-#assignment-list tr:hover {background-color: #36393e;}
+#assignment-list tr:hover {
+  background-color: #36393e;
+}
 
 /* #assignment-list tr:nth-child(1):hover {background-color: transparent} */
 
-
-
- #assignment-list th:nth-last-child(1), .last-col,  #assignment-list td:nth-last-child(1) {
+#assignment-list th:nth-last-child(1),
+.last-col,
+#assignment-list td:nth-last-child(1) {
   background-color: #1e2124;
   /* background:white; */
   border: 0px;
   display: flex;
   flex-direction: row;
   align-items: stretch;
+  width: 50px;
 }
 
-#assignment-list th:nth-last-child(1):hover, .last-col {
+#assignment-list th:nth-last-child(1):hover,
+.last-col {
   background-color: #1e2124;
   /* background:white; */
 }
@@ -145,13 +150,15 @@ li span:nth-child(3) {
 form {
   display: flex;
   justify-content: center;
+  background-color: gray;
 }
 
 form label {
   margin-left: 4px;
 }
 
-input:not([type]), #due-date-input {
+input:not([type]),
+#due-date-input {
   padding: 6px 12px 6px 12px;
   color: rgb(33, 37, 41);
   border: solid 1px rgb(206, 212, 218);
@@ -161,7 +168,7 @@ input:not([type]), #due-date-input {
 }
 
 .required:after {
-  content:" *";
+  content: ' *';
   color: red;
 }
 
@@ -213,13 +220,17 @@ button:disabled {
   background: transparent;
 }
 
-.edit-delete-button, .export-single-button, .export-button {
+.edit-delete-button,
+.export-single-button,
+.export-button {
   background-color: transparent;
   /* border: 1px solid gray; */
   /* color: black; */
 }
 
-.edit-delete-button:hover, .export-single-button:hover, .export-button  {
+.edit-delete-button:hover,
+.export-single-button:hover,
+.export-button {
   background-color: #424549;
 }
 
@@ -266,16 +277,16 @@ main {
   height: 100%;
 }
 body {
-  background-color:#1e2124;
+  background-color: #1e2124;
 }
 h1 {
   color: white;
 }
 table > * {
-  color: white
+  color: white;
 }
 a {
-  color: white
+  color: white;
 }
 table {
   /* margin-left: 30px;
@@ -297,7 +308,7 @@ th {
   background-color: #4d5158;
 }
 label {
-  color: white
+  color: black;
 }
 #outer-form {
   background-color: pink;
