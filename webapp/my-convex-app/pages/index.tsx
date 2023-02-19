@@ -12,6 +12,7 @@ import { Id } from '../convex/_generated/dataModel';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import Stack from 'react-bootstrap/Stack';
 // import { Button } from 'react-bootstrap';
+import swal from 'sweetalert';
 
 export default function App() {
 
@@ -36,6 +37,49 @@ export default function App() {
     setNewClassNameText('')
     setNewDueDate(new Date())
     setNewSourceUrlText('')
+  }
+
+  async function sendPayment() {
+    // send request to backend
+    // fetch('localhost:3333/checks', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify({
+    //     amount: 100,
+    //     recipient: 'test',
+    //     description: 'test payment'
+    // })
+    // }
+    await fetch('http://localhost:3333/checks', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          amount: 100,
+          recipient: 'test@gmail.com',
+          description: 'test payment',
+          name: 'test kai'
+        })
+      }
+    ).then((response) => {
+      console.log(response);
+      // unpack json
+      return response.json();
+    }).then((data) => {
+      // check if there is 'error' key in json
+      if (data.error) {
+        swal("Error", data.error, "error");
+      } else {
+        swal("Success", "Payment sent!", "success");
+      }
+    }).catch((error) => {
+      console.log(error);
+      swal("Error", error, "error");
+    });
+
   }
 
   async function handleDeleteAssignment(id: GenericId<"assignment">) {
@@ -119,6 +163,7 @@ function getEvent(assignment: {
       </table>
       </div>
       <PopupEditComponent />
+      <button onClick={() => sendPayment()}>Send Payment</button>
       {/* <br/> */}
 
       {/* <form onSubmit={handleAddAssignment} id="outer-form">

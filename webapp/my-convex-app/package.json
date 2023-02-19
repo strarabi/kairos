@@ -19,7 +19,8 @@
     "react-datepicker": "^4.10.0",
     "react-dom": "^18.2.0",
     "react-icalendar-link": "^3.0.2",
-    "reactjs-popup": "^2.0.5"
+    "reactjs-popup": "^2.0.5",
+    "sweetalert": "^2.1.2"
   },
   "devDependencies": {
     "@types/node": "^18.13.0",

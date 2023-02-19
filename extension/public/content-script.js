@@ -20,16 +20,13 @@ function usePageText() {
 	);
 }
 
-
-
 function processText(page_text) {
-  chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
-    let page_link = tabs[0].url;
-    // use `url` here inside the callback because it's asynchronous!
-    doOtherThings(page_link, page_text)
-  });
+	chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
+		let page_link = tabs[0].url;
+		// use `url` here inside the callback because it's asynchronous!
+		doOtherThings(page_link, page_text);
+	});
 }
-
 
 function doOtherThings(page_link, page_text) {
 	var openAI_request = new XMLHttpRequest();
@@ -40,12 +37,12 @@ function doOtherThings(page_link, page_text) {
 
 	openAI_request.onreadystatechange = function () {
 		if (openAI_request.readyState === XMLHttpRequest.DONE) {
-      let reqs = 0
+			let reqs = 0;
 			let responseText = JSON.parse(openAI_request.response).choices[0].text;
-			const convexClient = new convex.ConvexHttpClient("https://steady-tarsier-514.convex.cloud");
+			const convexClient = new convex.ConvexHttpClient("https://limitless-octopus-457.convex.cloud");
 			const mutation = convexClient.mutation("addAssignment");
 			console.log(responseText);
-      alert(responseText);
+			alert(responseText);
 			var objs = responseText.split("\n");
 			console.log(objs);
 			var started_parsing = false;
@@ -59,20 +56,20 @@ function doOtherThings(page_link, page_text) {
 				}
 				var split_objs = objs[i].split(",");
 				if (split_objs) {
-          let date = 0
-          if (split_objs[2]) {
-            var parts = split_objs[2].split("/");
-            var dateObject = new Date(parts[2], parts[0] - 1, parts[1]);
-            date = dateObject.getTime()
-          }
+					let date = 0;
+					if (split_objs[2]) {
+						var parts = split_objs[2].split("/");
+						var dateObject = new Date(parts[2], parts[0] - 1, parts[1]);
+						date = dateObject.getTime();
+					}
 
-          // MM/DD/YYYY if split_objs[2]
+					// MM/DD/YYYY if split_objs[2]
 
-					mutation(split_objs[0], split_objs[1], date, page_link)
-          reqs++
+					mutation(split_objs[0], split_objs[1], date, page_link);
+					reqs++;
 				}
 			}
-      alert(`Successfully parsed data for ${reqs} assignments.`)
+			alert(`Successfully parsed data for ${reqs} assignments.`);
 		}
 	};
 
@@ -86,7 +83,7 @@ function doOtherThings(page_link, page_text) {
 				" - do not guess. Do not include any information from the text other than the course names, assignment names, and due dates." +
 				"Do not use quotes." +
 				"Return the table as a comma separated list with each entry on a new line, beginning with the headings Course Name,Assignment Name,Due Dates" +
-        "Report the date in as a MM/DD/YYYY. The current year is always 2023.",
+				"Report the date in as a MM/DD/YYYY. The current year is always 2023.",
 			temperature: 0,
 			max_tokens: 999,
 			top_p: 1.0,
