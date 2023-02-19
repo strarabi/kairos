@@ -89,8 +89,9 @@ function getEvent(assignment: {
     <main>
       {/* <Stack gap={3}> */}
       <div className="header">
-        <img className="kairos-logo-img" src="https://i.imgur.com/sibuVI9.png" alt="Kairos logo" />
-        <h1>Assignment List</h1>
+        {/* <img className="kairos-logo-img" src="https://i.imgur.com/sibuVI9.png" alt="Kairos logo" />
+        <h1>Assignment List</h1> */}
+        <img className="header-img" src="https://i.imgur.com/ZEsinSE.png" alt="Kairos assignment list header" />
       </div>
 
       <div className="table-wrapper">

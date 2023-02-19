@@ -18,6 +18,9 @@
 			"js": ["./public/content-script.js"],
 			"matches": ["<all_urls>"]
 		}
-	]
+	],
+  "icons": { "16": "./public/icons/kairos16.png",
+           "48": "./public/icons/kairos48.png",
+          "128": "./public/icons/kairos128.png" }
 
 }
