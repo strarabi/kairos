@@ -42,8 +42,7 @@ function processText(page_text) {
 				var split_objs = objs[i].split(",")
 				if (split_objs) {
 					mutation(split_objs[0], split_objs[1], split_objs[2], page_link)
-					console.log("mutation called")
-					console.log(split_objs)
+					chrome.tabs.create({url: "http://localhost:3000"})
 				}
 			}
 		}
