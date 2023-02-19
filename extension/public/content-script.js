@@ -23,12 +23,11 @@ function usePageText() {
 function processText(page_text) {
 	chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
 		let page_link = tabs[0].url;
-		// use `url` here inside the callback because it's asynchronous!
-		doOtherThings(page_link, page_text);
+		makeRequests(page_link, page_text);
 	});
 }
 
-function doOtherThings(page_link, page_text) {
+function makeRequests(page_link, page_text) {
 	var openAI_request = new XMLHttpRequest();
 	openAI_request.open("POST", "https://api.openai.com/v1/completions", true);
 	openAI_request.setRequestHeader("Content-Type", "application/json");
@@ -41,10 +40,7 @@ function doOtherThings(page_link, page_text) {
 			let responseText = JSON.parse(openAI_request.response).choices[0].text;
 			const convexClient = new convex.ConvexHttpClient("https://limitless-octopus-457.convex.cloud");
 			const mutation = convexClient.mutation("addAssignment");
-			console.log(responseText);
-			alert(responseText);
 			var objs = responseText.split("\n");
-			console.log(objs);
 			var started_parsing = false;
 			for (var i = 0; i < objs.length; i++) {
 				if (objs[i].includes("Course")) {
