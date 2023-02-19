@@ -68,6 +68,9 @@ h1 {
   background-color: white;
   background:white;
   border: 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 #assignment-list th:nth-last-child(1):hover, .last-col {
@@ -141,6 +144,10 @@ form {
   justify-content: center;
 }
 
+form label {
+  margin-left: 4px;
+}
+
 input:not([type]), #due-date-input {
   padding: 6px 12px 6px 12px;
   color: rgb(33, 37, 41);
@@ -203,12 +210,13 @@ button:disabled {
   background: transparent;
 }
 
-.edit-delete-button {
+.edit-delete-button, .export-single-button  {
   background-color: white;
   border: 1px solid gray;
+  color: black;
 }
 
-.edit-delete-button:hover {
+.edit-delete-button:hover, .export-single-button:hover  {
   background-color: darkgrey;
 }
 
@@ -234,14 +242,17 @@ button:disabled {
 
 .export-button {
   background-color: rgb(67, 67, 67);
+  border: 2px solid black;
+}
+
+.export-button:hover{
+  background-color: gray;
+}
+
+.export-single-button, .export-button {
   text-align: center;
   text-overflow: wrap;
   font-size: 10pt;
   padding: 2px;
   max-width: 100px;
-  border: 2px solid black;
-}
-
-.export-button:hover {
-  background-color: gray;
 }

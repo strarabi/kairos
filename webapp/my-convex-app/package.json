@@ -11,12 +11,14 @@
   },
   "dependencies": {
     "bootstrap": "^5.2.3",
+    "calendar-link": "^2.4.0",
     "convex": "0.9.1",
     "next": "latest",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
     "react-datepicker": "^4.10.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-icalendar-link": "^3.0.2"
   },
   "devDependencies": {
     "@types/node": "^18.13.0",
