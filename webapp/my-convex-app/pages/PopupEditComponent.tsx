@@ -9,23 +9,21 @@ import { FormEvent } from 'react';
 
 
 export default function PopupEditComponent(props: {assignment_id?: GenericId<"assignment">, currentClassName?: string, currentAssignmentName?: string, currentDueDate?: bigint, currentSourceURL?:string}) {
-  // console.log("here")
-  // console.log(props.assignment_id)
-  const [newClassNameText, setNewClassNameText] = useState('hi') //useState(props.currentClassName ?? '')
-  const [newAssignmentNameText, setNewAssignmentNameText] = useState('hi') // useState(props.currentAssignmentName ?? '')
+  const [newClassNameText, setNewClassNameText] = useState(props.currentClassName ?? '')
+  const [newAssignmentNameText, setNewAssignmentNameText] = useState(props.currentAssignmentName ?? '')
   let initialDate;
   if (!props.currentDueDate || props.currentDueDate === undefined) {
     initialDate = new Date()
   } else {
     initialDate = new Date(Number(props.currentDueDate))
   }
-  const [newDueDate, setNewDueDate] = useState(new Date())// useState<Date | null>(new Date());
-  const [newSourceUrlText, setNewSourceUrlText] = useState("hi") //useState(props.currentSourceURL ?? '')
+  const [newDueDate, setNewDueDate] =  useState<Date | null>(initialDate);
+  const [newSourceUrlText, setNewSourceUrlText] = useState(props.currentSourceURL ?? '')
 
   let isEdit = true
   if (!props.assignment_id || props.assignment_id === undefined) {
     isEdit = false
-  } 
+  }
 
   const replaceAssignment = useMutation('replaceAssignment')
   const addAssignment = useMutation('addAssignment')
@@ -104,13 +102,13 @@ export default function PopupEditComponent(props: {assignment_id?: GenericId<"as
         </div>
         <button value={isEdit?"Update":"Add"} disabled={!newAssignmentNameText || !newDueDate} onClick={(event) => {
           if (isEdit) {
-            handleEditAssignment(event); 
+            handleEditAssignment(event);
           } else {
-            handleAddAssignment(event); 
+            handleAddAssignment(event);
           }
-          console.log("modal closed"); 
+          console.log("modal closed");
           close();
-          }}>{isEdit?"Update":"addAssignment"}</button>
+          }}>{isEdit?"Update":"Add"}</button>
       </form></div>
       </div>)}
   </Popup>)

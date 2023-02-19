@@ -18,7 +18,8 @@
     "react-bootstrap": "^2.7.2",
     "react-datepicker": "^4.10.0",
     "react-dom": "^18.2.0",
-    "react-icalendar-link": "^3.0.2"
+    "react-icalendar-link": "^3.0.2",
+    "reactjs-popup": "^2.0.5"
   },
   "devDependencies": {
     "@types/node": "^18.13.0",
