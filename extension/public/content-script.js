@@ -1,5 +1,20 @@
-function makeApiCall() {
-	var page_text = document.body.innerText
+function useHighlightedText() {
+	chrome.tabs.executeScript( {
+		code: "window.getSelection().toString();"
+	}, function(selection) {
+		processText(selection[0]);
+	});
+}
+
+function usePageText() {
+	chrome.tabs.executeScript({
+		code: "document.all[0].innerText"
+	}, function(selection) {
+		processText(selection[0])
+	})
+}
+
+function processText(page_text) {
 	var page_link = window.location.href
 	var openAI_request = new XMLHttpRequest()
 	openAI_request.open("POST", "https://api.openai.com/v1/completions", true)
@@ -28,18 +43,11 @@ function makeApiCall() {
 				if (split_objs) {
 					mutation(split_objs[0], split_objs[1], split_objs[2], page_link)
 					console.log("mutation called")
-					console.log(split_objs	)
+					console.log(split_objs)
 				}
 			}
 		}
 	}
-
-// Course Name,Assignment Name,Due Dates
-// "","",""
-// "","",""
-// "","",""
-// "","",""
-// "","",""
 
 	openAI_request.send(JSON.stringify({
 		"model": "text-davinci-003",
@@ -56,5 +64,4 @@ function makeApiCall() {
 	}))
 }
 
-export default makeApiCall
-
+export {usePageText, useHighlightedText};

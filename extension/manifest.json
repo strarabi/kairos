@@ -10,9 +10,9 @@
 	},
 
 	"permissions": [
-		"tabs"
+		"tabs",
+		"activeTab"
 	],
-
 	"content_scripts": [
 		{
 			"js": ["./public/content-script.js"],
