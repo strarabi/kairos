@@ -105,7 +105,7 @@ function getEvent(assignment: {
           <tr key={assignment._id.toString()} className="assignment-tr">
             <td>{assignment.class_name}</td>
             <td>{assignment.assignment_name}</td>
-            <td>{new Date(Number(assignment.due_date)).toLocaleDateString()}</td>
+            <td>{Number(assignment.due_date) != 0 ? new Date(Number(assignment.due_date)).toLocaleDateString() : "INVALID" }</td>
             <td><a href={assignment.source_url} target="_blank">{assignment.source_url}</a></td>
             <td>{new Date(assignment._creationTime).toLocaleDateString()}</td>
             <td className="last-col">
