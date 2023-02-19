@@ -9,6 +9,9 @@ import PopupEditComponent from './PopupEditComponent';
 import ICalendarLink from "react-icalendar-link";
 import { google, outlook, office365, yahoo, ics } from "calendar-link";
 import { Id } from '../convex/_generated/dataModel';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+import Stack from 'react-bootstrap/Stack';
+// import { Button } from 'react-bootstrap';
 
 export default function App() {
 
@@ -84,17 +87,19 @@ function getEvent(assignment: {
 
   return (
     <main>
+      {/* <Stack gap={3}> */}
       <h1>Assignment List</h1>
 
+      <div className="table-wrapper">
       <table id="assignment-list">
         <tbody>
         <tr>
-          <th>Class Name</th>
-          <th>Assignment Name</th>
-          <th>Due Date</th>
-          <th>Source URL</th>
-          <th>Date Added</th>
-          <th className="last-col"><button className = "export-button" onClick={() => exportAllCalendar()}> Export all to calendar </button> </th>
+          <th>Class</th>
+          <th>Assignment</th>
+          <th>Due</th>
+          <th>Source</th>
+          <th>Created</th>
+          <th className="last-col"><button className = "export-button" onClick={() => exportAllCalendar()}> Export all 🗓️ </button> </th>
         </tr>
         {assignments.map((assignment) => (
           <tr key={assignment._id.toString()} className="assignment-tr">
@@ -106,30 +111,33 @@ function getEvent(assignment: {
             <td className="last-col">
               <PopupEditComponent assignment_id={assignment._id} currentClassName={assignment.class_name} currentAssignmentName={assignment.assignment_name} currentDueDate={assignment.due_date} currentSourceURL={assignment.source_url}/>
               <button className = "edit-delete-button" onClick={() => handleDeleteAssignment(assignment._id)}> ❌ </button>
-              <button className = "export-single-button" onClick={() => exportSingleCalendar(assignment)}> Export to calendar </button>
+              <button className = "export-single-button" onClick={() => exportSingleCalendar(assignment)}> 🗓️ </button>
               </td>
             </tr>
         ))}
         </tbody>
       </table>
-      <br/>
-      <form onSubmit={handleAddAssignment}>
+      </div>
+      <button className="export-button add-new-item"> Add Item </button>
+      {/* <br/> */}
+
+      {/* <form onSubmit={handleAddAssignment} id="outer-form">
         <div className="input-section">
-        <label htmlFor="class-name-input">Class Name</label>
+        <label htmlFor="class-name-input">Class</label>
         <input
           id = "class-name-input"
           value={newClassNameText}
           onChange={(event) => setNewClassNameText(event.target.value)}
-          placeholder="Enter the class name"
+          placeholder="Enter the class"
         />
         </div>
         <div className="input-section">
-        <label htmlFor="assignment-name-input" className = "required">Assignment Name</label>
+        <label htmlFor="assignment-name-input" className = "required">Assignment</label>
         <input
           id="assignment-name-input"
           value={newAssignmentNameText}
           onChange={(event) => setNewAssignmentNameText(event.target.value)}
-          placeholder="Enter the assignment name"
+          placeholder="Enter the assignment"
           required
         />
         </div>
@@ -153,7 +161,8 @@ function getEvent(assignment: {
         </div>
         <input type="submit" value="Add" disabled={!newAssignmentNameText || !newDueDate} />
 
-      </form>
+      </form> */}
+      {/* </Stack> */}
     </main>
   )
 }

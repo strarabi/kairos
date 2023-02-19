@@ -40,17 +40,20 @@ h1 {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #29465B;
-  color: white;
+  /* background-color: #29465B; */
+  /* color: white; */
 }
 
 #assignment-list td{
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
   padding: 8px;
 }
 
-#assignment-list tr:nth-child(even){
+/* #assignment-list tr:nth-child(even){
   background-color: #f2f2f2;
+} */
+#assignment-list tr {
+  background-color: #282b30;
 }
 
 /* #assignment-list tr:nth-child(1) {
@@ -58,24 +61,24 @@ h1 {
   color: white;
 } */
 
-#assignment-list tr:hover {background-color: #ddd;}
+#assignment-list tr:hover {background-color: #36393e;}
 
 /* #assignment-list tr:nth-child(1):hover {background-color: transparent} */
 
 
 
  #assignment-list th:nth-last-child(1), .last-col,  #assignment-list td:nth-last-child(1) {
-  background-color: white;
-  background:white;
+  background-color: #1e2124;
+  /* background:white; */
   border: 0px;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: stretch;
 }
 
 #assignment-list th:nth-last-child(1):hover, .last-col {
-  background-color: white;
-  background:white;
+  background-color: #1e2124;
+  /* background:white; */
 }
 
 /* .last-col {
@@ -100,7 +103,7 @@ h1 {
   padding: 4px 8px 4px 8px;
   font-size: 0.75em;
 }
-
+/*
 ul {
   margin: 8px;
   border-radius: 8px;
@@ -136,8 +139,8 @@ li span:nth-child(2) {
 li span:nth-child(3) {
   color: #6c757d;
   /* margin-left: auto;
-  white-space: nowrap; */
-}
+  white-space: nowrap;
+}*/
 
 form {
   display: flex;
@@ -210,14 +213,14 @@ button:disabled {
   background: transparent;
 }
 
-.edit-delete-button, .export-single-button  {
-  background-color: white;
-  border: 1px solid gray;
-  color: black;
+.edit-delete-button, .export-single-button, .export-button {
+  background-color: transparent;
+  /* border: 1px solid gray; */
+  /* color: black; */
 }
 
-.edit-delete-button:hover, .export-single-button:hover  {
-  background-color: darkgrey;
+.edit-delete-button:hover, .export-single-button:hover, .export-button  {
+  background-color: #424549;
 }
 
 .popup-content {
@@ -230,6 +233,7 @@ button:disabled {
 
 .modal > .modal-header {
   width: 100%;
+  height: 100%;
   border-bottom: 1px solid gray;
   font-size: 18px;
   text-align: center;
@@ -240,7 +244,7 @@ button:disabled {
   padding: 10px 5px;
 }
 
-.export-button {
+/* .export-button {
   background-color: rgb(67, 67, 67);
   border: 2px solid black;
 }
@@ -255,4 +259,51 @@ button:disabled {
   font-size: 10pt;
   padding: 2px;
   max-width: 100px;
+} */
+main {
+  /* background-color: purple; */
+  width: 100%;
+  height: 100%;
+}
+body {
+  background-color:#1e2124;
+}
+h1 {
+  color: white;
+}
+table > * {
+  color: white
+}
+a {
+  color: white
+}
+table {
+  /* margin-left: 30px;
+  margin-right: 30px; */
+  width: 100%;
+}
+/* main {
+  margin-left: 30px;
+  margin-right: 30px;
+} */
+/* .last-col-flex {
+  background-color: pink;
+} */
+.table-wrapper {
+  margin-right: 20px;
+  margin-left: 20px;
+}
+th {
+  background-color: #4d5158;
+}
+label {
+  color: white
+}
+#outer-form {
+  background-color: pink;
+  /* display: flex; */
+}
+.add-new-item {
+  margin-top: 20px;
+  margin-left: 20px;
 }
