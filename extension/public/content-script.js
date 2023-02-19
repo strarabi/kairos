@@ -32,13 +32,13 @@ function makeRequests(page_link, page_text) {
 	openAI_request.open("POST", "https://api.openai.com/v1/completions", true);
 	openAI_request.setRequestHeader("Content-Type", "application/json");
 	openAI_request.setRequestHeader("accept", "*/*");
-	openAI_request.setRequestHeader("Authorization", "Bearer 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");
+	openAI_request.setRequestHeader("Authorization", "");
 
 	openAI_request.onreadystatechange = function () {
 		if (openAI_request.readyState === XMLHttpRequest.DONE) {
 			let reqs = 0;
 			let responseText = JSON.parse(openAI_request.response).choices[0].text;
-			const convexClient = new convex.ConvexHttpClient("https://limitless-octopus-457.convex.cloud");
+			const convexClient = new convex.ConvexHttpClient("");
 			const mutation = convexClient.mutation("addAssignment");
 			var objs = responseText.split("\n");
 			var started_parsing = false;
